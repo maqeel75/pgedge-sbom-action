@@ -7,7 +7,7 @@ PG_NAME_BASE="${PG_TARBALL_NAME%.tar.gz}"
 PG_NAME_BASE="${PG_NAME_BASE%.tgz}"
 
 PG_DIR="/opt/${PG_NAME_BASE}"
-SBOM_DIR="/github/workspace/pg_sbom"
+SBOM_DIR="${2:-/opt/pg_sbom}"
 
 echo "📥 Downloading PostgreSQL tarball from $PG_TARBALL_URL"
 curl -fsSL "$PG_TARBALL_URL" -o "$PG_TARBALL_NAME"

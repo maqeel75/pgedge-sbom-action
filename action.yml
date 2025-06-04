@@ -1,15 +1,21 @@
-name: Generate pgEdge SBOM and Vulnerability Reports
-description: Downloads a tarball, generates SBOMs (CycloneDX, SPDX) and Grype report
+name: Generate pgEdge SBOM
+description: Downloads a pgEdge tarball, generates SBOMs and vulnerability report.
+author: maqeel75
 
 inputs:
   pg_tarball_url:
-    description: URL to pgEdge tarball (.tgz)
+    description: "URL to the pgEdge tarball"
     required: false
     default: "https://pgedge-download.s3.amazonaws.com/REPO/pg17-17.5-1-amd.tgz"
+  output-dir:
+    description: "Directory where SBOM and reports will be saved"
+    required: false
+    default: "/opt/pg_sbom"
 
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: docker
+  image: Dockerfile
   args:
     - ${{ inputs.pg_tarball_url }}
+    - ${{ inputs.output-dir }}
 
